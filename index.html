@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f0eadf" />
+    <link rel="icon" href="./assets/favicon.svg" />
+    <title>人生档案 · Life Archive</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="intro-sequence" id="introSequence" aria-hidden="true">
+      <div class="intro-morph">
+        <i class="intro-line"></i>
+        <span>LIFE ARCHIVE</span>
+      </div>
+    </div>
+    <div class="wallpaper" aria-hidden="true"></div>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M7 24C12 24 13 17 13 10c4 3 6 8 5 14 4-4 6-9 7-15" /></svg>
+          </div>
+          <div>
+            <strong>人生档案</strong>
+            <span>Life Archive</span>
+          </div>
+        </div>
+
+        <nav class="main-nav" aria-label="主要导航">
+          <button class="nav-item active" data-page="today">
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5h16v14H4zM8 3v5m8-5v5M4 9h16" /></svg></span>
+            <span>今日</span>
+          </button>
+          <button class="nav-item" data-page="growth">
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 19V9m7 10V5m7 14v-7" /></svg></span>
+            <span>成长</span>
+          </button>
+          <button class="nav-item" data-page="archive">
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM7 4h10l2 3M9 11h6" /></svg></span>
+            <span>记录</span>
+          </button>
+          <button class="nav-item" data-page="space">
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 18V8l8-4 8 4v10M8 20v-7h8v7M3 20h18" /></svg></span>
+            <span>空间</span>
+          </button>
+          <button class="nav-item" data-page="me">
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0" /></svg></span>
+            <span>我的</span>
+          </button>
+        </nav>
+
+        <div class="chapter-card">
+          <div class="eyebrow">当前章节 · 08 / 2026</div>
+          <h3>重新建立节奏</h3>
+          <div class="chapter-progress"><i></i></div>
+          <div class="chapter-meta"><span>第 12 天</span><span>42%</span></div>
+        </div>
+
+        <button class="profile-button" id="profileButton" title="打开我的档案">
+          <span class="avatar" data-user-initial>岚</span>
+          <span><strong>行旅者 · <b data-user-name>岚</b></strong><small>人生等级 12</small></span>
+          <svg viewBox="0 0 24 24"><path d="m9 7 5 5-5 5" /></svg>
+        </button>
+      </aside>
+
+      <main class="main-content">
+        <section class="page active" id="page-today">
+          <header class="page-header">
+            <div>
+              <div class="date-line" id="todayDate">七月二十九日 · 星期三</div>
+              <h1>早上好，<span data-user-name>岚</span>。</h1>
+              <p>今天不必完成所有事情，先让生活向前一点。</p>
+            </div>
+            <div class="header-actions">
+              <button class="icon-button" id="focusButton" aria-label="切换专注视图">
+                <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3m13 5h3a2 2 0 0 0 2-2v-3" /></svg>
+              </button>
+              <button class="primary-button" id="addTaskButton">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+                记录行动
+              </button>
+            </div>
+          </header>
+
+          <div class="dashboard-grid">
+            <div class="left-column">
+              <article class="card level-card quiet-level-card">
+                <div class="level-topline">
+                  <div>
+                    <span class="eyebrow">今天的积累</span>
+                    <div class="level-number"><span>+</span><strong id="todayXp">0</strong></div>
+                  </div>
+                  <div class="level-copy">
+                    <strong>今天已有 <span id="todayCompleted">0</span> 项行动留下记录</strong>
+                    <span>主要成长方向 · <b id="todayTopAttribute">等待开始</b></span>
+                  </div>
+                </div>
+                <div class="xp-track"><i id="lifeXpBar"></i></div>
+                <div class="level-foot">
+                  <span>Life Lv.<b id="lifeLevel">12</b> · 长期经验 <b id="totalXp">2,480</b> · 距下一等级 <b id="xpRemaining">520</b></span>
+                  <span id="levelProgress">2,480 / 3,000</span>
+                </div>
+              </article>
+
+              <section class="section-block">
+                <div class="section-heading">
+                  <div><span class="eyebrow">TODAY'S RHYTHM</span><h2>今天重要的三件事</h2></div>
+                  <button class="text-button" id="showAllButton">查看全部 <span>→</span></button>
+                </div>
+                <div class="task-list" id="taskList"></div>
+              </section>
+
+              <article class="card daily-note">
+                <div class="note-flower" aria-hidden="true">✣</div>
+                <div>
+                  <span class="eyebrow">今日旁白</span>
+                  <p id="dailyNarrative">今天的重点落在创造与体魄上。你不需要把计划填满，只要完成一个起步，今天就不是空白。</p>
+                </div>
+                <button class="quiet-button" id="editNoteButton">写一句话</button>
+              </article>
+            </div>
+
+            <aside class="right-column">
+              <article class="card status-card">
+                <div class="card-heading"><span class="eyebrow">此刻状态</span><span class="status-dot"></span></div>
+                <h2>今天感觉如何？</h2>
+                <p>状态只用来调整建议，不会影响你的成长。</p>
+                <div class="mood-row" id="moodRow">
+                  <button data-mood="疲惫"><span>☾</span><small>疲惫</small></button>
+                  <button class="selected" data-mood="平静"><span>◡</span><small>平静</small></button>
+                  <button data-mood="很好"><span>✦</span><small>很好</small></button>
+                </div>
+              </article>
+
+              <article class="card today-growth-card">
+                <div class="card-title-row">
+                  <div><span class="eyebrow">今日成长</span><h2>不必盯着所有数字</h2></div>
+                  <button class="round-more" data-page-link="growth">↗</button>
+                </div>
+                <p>成长被安静地记在背后。想回顾长期变化时，再进入成长页。</p>
+                <div class="today-growth-lines">
+                  <span><i></i>行动会进入对应属性</span>
+                  <span><i></i>中断不会清空过去</span>
+                </div>
+              </article>
+
+            </aside>
+          </div>
+        </section>
+
+        <section class="page" id="page-growth">
+          <header class="page-header compact-header">
+            <div><div class="date-line">YOUR GROWTH</div><h1>我的成长</h1><p>想回顾时再来到这里；等级只记录投入，不评价你是谁。</p></div>
+            <button class="quiet-button" id="newChapterButton">管理人生章节</button>
+          </header>
+          <article class="card growth-overview-card">
+            <div class="growth-level-copy">
+              <span class="eyebrow">LIFE LEVEL</span>
+              <strong>Lv. <b id="growthLifeLevel">12</b></strong>
+              <p>当前章节 · 重新建立生活的节奏</p>
+            </div>
+            <div class="growth-chapter-copy">
+              <span>Chapter 01 · 2026.07.18 — 仍在继续</span>
+              <h2>你正把更多时间留给创造。</h2>
+              <div class="chapter-progress"><i></i></div>
+              <small>章节进度 42%</small>
+            </div>
+          </article>
+          <article class="card growth-attributes-panel">
+            <div class="card-title-row">
+              <div><span class="eyebrow">SIX DIRECTIONS</span><h2>六项成长方向</h2></div>
+              <span class="concept-label">长期视图</span>
+            </div>
+            <div class="attribute-list" id="attributeList"></div>
+          </article>
+          <div class="growth-layout">
+            <article class="card growth-radar">
+              <div class="radar-visual" id="radarVisual">
+                <div class="radar-ring ring-1"></div><div class="radar-ring ring-2"></div><div class="radar-ring ring-3"></div>
+                <div class="radar-shape"></div>
+                <span class="radar-label l1">体魄</span><span class="radar-label l2">学识</span><span class="radar-label l3">创造</span>
+                <span class="radar-label l4">秩序</span><span class="radar-label l5">联结</span><span class="radar-label l6">探索</span>
+              </div>
+              <div class="radar-copy"><span class="eyebrow">近 30 天</span><h2>创造是你最近最鲜明的方向。</h2><p>这不是固定的人格画像。随着生活变化，你的构成也会慢慢改变。</p></div>
+            </article>
+            <div class="growth-cards" id="growthCards"></div>
+          </div>
+          <details class="growth-more">
+            <summary><span><b>人生地图</b><small>查看重要转变与未来坐标</small></span><i>＋</i></summary>
+            <article class="card life-map-card">
+              <div class="map-copy">
+                <span class="eyebrow">LIFE MAP</span>
+                <h2>你走过的路，正在形成地图。</h2>
+                <p>节点不是关卡，而是现实中真正发生过的转变。</p>
+                <button class="quiet-button" id="mapPreviewButton">查看节点说明</button>
+              </div>
+              <div class="life-map" aria-label="人生地图预览">
+                <i class="map-path path-a"></i><i class="map-path path-b"></i><i class="map-path path-c"></i>
+                <button class="map-node node-now"><span>今</span><small>现在的自己</small></button>
+                <button class="map-node node-code"><span>创</span><small>开始制作软件</small></button>
+                <button class="map-node node-read"><span>知</span><small>重新开始阅读</small></button>
+                <button class="map-node node-body"><span>体</span><small>照顾身体</small></button>
+                <button class="map-node node-future"><span>·</span><small>尚未抵达</small></button>
+              </div>
+            </article>
+          </details>
+          <article class="card life-tree-card">
+            <div class="tree-copy">
+              <span class="eyebrow">LIFE TREE</span>
+              <h2>人生树</h2>
+              <p>它展示的不是“应该成为谁”，而是你的时间正在自然长向哪里。</p>
+              <div class="tree-legend"><span><i></i>近期活跃</span><span><i></i>持续积累</span></div>
+            </div>
+            <div class="life-tree-visual" id="lifeTreeVisual" aria-label="会随行动生长的人生树"></div>
+          </article>
+        </section>
+
+        <section class="page" id="page-archive">
+          <header class="page-header compact-header">
+            <div><div class="date-line">YOUR RECORDS</div><h1>生活记录</h1><p>日记、回忆与年度档案，沿着同一条时间线安静保存。</p></div>
+            <div class="header-actions">
+              <button class="quiet-button" id="writeDiaryButton">写下今天</button>
+              <button class="primary-button" id="addCapsuleButton">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+                保存回忆
+              </button>
+            </div>
+          </header>
+
+          <section class="record-timeline">
+            <div class="section-heading">
+              <div><span class="eyebrow">TIMELINE · JULY 2026</span><h2>最近留下的痕迹</h2></div>
+              <button class="text-button" id="archiveViewToggle">展开年度档案 <span>↓</span></button>
+            </div>
+            <div class="timeline-list" id="timelineList"></div>
+          </section>
+
+          <details class="archive-year-details" id="archiveYearDetails">
+            <summary><span><b>2026 年度档案</b><small>等级、行动与人生观察摘要</small></span><i>＋</i></summary>
+          <div class="archive-hero card">
+            <div class="archive-year">
+              <span class="eyebrow">ANNUAL ARCHIVE</span>
+              <strong>2026</strong>
+              <p id="annualNarrative">这一年，你开始持续创造，而不只是计划。</p>
+            </div>
+            <div class="archive-metrics">
+              <div><span>人生等级</span><strong>Lv. <b id="archiveLifeLevel">12</b></strong></div>
+              <div><span>留下行动</span><strong id="archiveActionCount">19</strong></div>
+              <div><span>成长最多</span><strong id="annualTopAttribute">创造</strong></div>
+              <div><span>当前章节</span><strong>重新建立节奏</strong></div>
+            </div>
+            <div class="archive-observer">
+              <div class="observer-mark">✦</div>
+              <div><span class="eyebrow">AI LIFE OBSERVER · 概念预览</span><p id="observerText">最近的你正在从“准备”进入“创造”。与此同时，身体与恢复仍需要被留出位置。</p></div>
+            </div>
+            <div class="annual-highlights" id="annualHighlights"></div>
+          </div>
+          </details>
+
+          <div class="archive-content-grid">
+            <section class="archive-main-column">
+              <div class="section-heading">
+                <div><span class="eyebrow">MEMORY CAPSULES</span><h2>回忆胶囊</h2></div>
+                <span class="archive-count" id="capsuleCount">2 枚胶囊</span>
+              </div>
+              <div class="capsule-list" id="capsuleList"></div>
+
+              <article class="card report-card">
+                <div class="report-cover">
+                  <span id="monthlyReportLabel">MONTHLY REPORT · 07</span>
+                  <strong>重新<br />开始</strong>
+                  <small id="monthlyReportDate">JULY 2026</small>
+                </div>
+                <div class="report-copy">
+                  <span class="eyebrow">LIFE REPORT</span>
+                  <h2 id="monthlySummaryTitle">这个月，生活开始留下清晰的纹理。</h2>
+                  <p id="monthlySummaryText">月度总结正在根据你的行动、回忆和成长方向生成。</p>
+                  <div class="monthly-metrics" id="monthlyMetrics"></div>
+                  <button class="quiet-button" id="reportPreviewButton">重新生成月度总结 →</button>
+                </div>
+              </article>
+            </section>
+
+            <aside class="archive-side-column">
+              <article class="card knowledge-card">
+                <div class="card-title-row">
+                  <div><span class="eyebrow">KNOWLEDGE ARCHIVE</span><h2>思想档案</h2></div>
+                  <span class="concept-label">概念</span>
+                </div>
+                <p>未来可以把读书笔记、文章和灵感整理成长期知识脉络。</p>
+                <div class="knowledge-cloud"><span>存在主义</span><span>游戏设计</span><span>AI</span><span>文学</span><span>自由</span></div>
+              </article>
+
+            </aside>
+          </div>
+        </section>
+
+        <section class="page" id="page-space">
+          <header class="page-header compact-header">
+            <div><div class="date-line">YOUR SPACE</div><h1>我的空间</h1><p>主题不是一层皮肤，而是你愿意长期停留的数字房间。</p></div>
+          </header>
+          <article class="card space-hero">
+            <div class="space-hero-copy">
+              <span class="eyebrow">CURRENT ATMOSPHERE</span>
+              <h2>让环境适应此刻的你。</h2>
+              <p>颜色、壁纸和卡片会一起改变，但你的记录始终留在原处。</p>
+            </div>
+            <div class="space-room-preview" id="roomScene" aria-label="会随成长变化的个人房间"></div>
+          </article>
+          <article class="card theme-editor space-theme-editor">
+            <div class="card-title-row">
+              <div><span class="eyebrow">LIFE THEMES</span><h2>选择空间氛围</h2></div>
+              <span class="concept-label">4 个空间</span>
+            </div>
+            <div class="theme-grid" id="themeGrid">
+              <button class="theme-option selected" data-theme-option="mist">
+                <span class="theme-preview preview-mist"><i></i></span>
+                <span><strong>雾白</strong><small>Morning Mist</small></span><b>✓</b>
+              </button>
+              <button class="theme-option" data-theme-option="greenhouse">
+                <span class="theme-preview preview-greenhouse"><i></i></span>
+                <span><strong>植物玻璃</strong><small>Greenhouse</small></span><b>✓</b>
+              </button>
+              <button class="theme-option" data-theme-option="night">
+                <span class="theme-preview preview-night"><i></i></span>
+                <span><strong>深夜档案</strong><small>Night Archive</small></span><b>✓</b>
+              </button>
+              <button class="theme-option" data-theme-option="clay">
+                <span class="theme-preview preview-clay"><i></i></span>
+                <span><strong>陶土书房</strong><small>Clay Room</small></span><b>✓</b>
+              </button>
+            </div>
+          </article>
+          <div class="space-secondary-grid">
+            <article class="card room-card">
+              <div class="card-title-row">
+                <div><span class="eyebrow">PERSONAL ROOM</span><h2>成长房间</h2></div>
+                <span class="concept-label" id="roomLevel">Room Lv.1</span>
+              </div>
+              <p id="roomNarrative">阅读会留下书架，创造会留下工作桌，远行会留下照片。这里不靠购买装饰。</p>
+              <div class="room-progress"><i id="roomProgressBar"></i></div>
+              <div class="room-modes" id="roomModeButtons">
+                <button class="selected" data-room-mode="create">创作角</button>
+                <button data-room-mode="read">阅读角</button>
+                <button data-room-mode="rest">休息角</button>
+              </div>
+              <div class="room-unlocks" id="roomUnlocks"></div>
+            </article>
+            <article class="card items-card">
+              <div class="card-title-row">
+                <div><span class="eyebrow">LIFE ITEMS</span><h2>人生物品</h2></div>
+                <span class="concept-label" id="lifeItemCount">3 件</span>
+              </div>
+              <div class="life-items" id="lifeItems"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="page" id="page-me">
+          <header class="page-header compact-header">
+            <div><div class="date-line">YOUR ARCHIVE</div><h1>我的档案</h1><p>这里记录的不是一个虚构角色，而是正在生活的你。</p></div>
+          </header>
+          <div class="me-layout">
+            <article class="card identity-card">
+              <div class="identity-cover">
+                <span class="identity-seal" data-user-initial>岚</span>
+                <div class="identity-title">
+                  <span class="eyebrow">THE TRAVELER</span>
+                  <h2>行旅者 · <span data-user-name>岚</span></h2>
+                  <p>档案建立于 2026 年 7 月</p>
+                </div>
+              </div>
+              <div class="identity-quote">
+                <span>“</span>
+                <p>我不需要一次改变全部生活，只需要让今天向前一点。</p>
+              </div>
+            </article>
+
+            <div class="me-settings">
+              <article class="card profile-editor">
+                <div class="card-title-row">
+                  <div><span class="eyebrow">IDENTITY</span><h2>称呼与名字</h2></div>
+                  <span class="settings-mark">01</span>
+                </div>
+                <p>这个名字会出现在今日问候、旅程和生活档案中。</p>
+                <label class="name-field">
+                  <span>你的名字</span>
+                  <div>
+                    <input id="userNameInput" maxlength="12" value="岚" autocomplete="off" />
+                    <button class="primary-button" id="saveNameButton">保存名字</button>
+                  </div>
+                </label>
+              </article>
+
+              <article class="card archive-overview">
+                <div class="card-title-row">
+                  <div><span class="eyebrow">ARCHIVE OVERVIEW</span><h2>档案概览</h2></div>
+                  <span class="settings-mark">02</span>
+                </div>
+                <div class="overview-list">
+                  <div><span>人生等级</span><strong>Lv. <b id="meLifeLevel">12</b></strong></div>
+                  <div><span>留下的行动</span><strong id="meActionCount">19</strong></div>
+                  <div><span>当前章节</span><strong>重新建立节奏</strong></div>
+                  <div><span>此刻节律</span><strong>正在建立</strong></div>
+                </div>
+              </article>
+
+              <div class="me-utilities">
+                <button class="utility-button replay-button" id="replayIntro">
+                  <span><strong>重播开场动画</strong><small>线条展开为英文，再收束离场</small></span>
+                  <span>▶</span>
+                </button>
+                <button class="utility-button reset-button" id="resetDemo">
+                  <span><strong>恢复演示数据</strong><small>清除本地修改，回到最初的档案状态</small></span>
+                  <span>↺</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="taskModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-header">
+          <div><span class="eyebrow">NEW ACTION</span><h2 id="modalTitle">记录一项行动</h2></div>
+          <button class="icon-button" data-close-modal aria-label="关闭">×</button>
+        </div>
+        <label>行动名称<input id="taskTitleInput" placeholder="例如：散步、阅读、推进项目" /></label>
+        <div class="form-grid">
+          <label>对应属性<select id="taskAttributeInput"><option>体魄</option><option>学识</option><option selected>创造</option><option>秩序</option><option>联结</option><option>探索</option></select></label>
+          <label>标准时长<select id="taskDurationInput"><option value="15">15 分钟</option><option value="30" selected>30 分钟</option><option value="45">45 分钟</option><option value="60">60 分钟</option></select></label>
+        </div>
+        <div class="tier-preview">
+          <div><span>起步</span><strong>10 分钟</strong></div><div><span>完成</span><strong>30 分钟</strong></div><div><span>突破</span><strong>60 分钟</strong></div>
+        </div>
+        <button class="primary-button wide" id="saveTaskButton">加入今天</button>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="completeModal" aria-hidden="true">
+      <div class="modal-card complete-modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <div><span class="eyebrow">HOW FAR DID YOU GO?</span><h2 id="completeTitle">完成到哪一步？</h2></div>
+          <button class="icon-button" data-close-modal aria-label="关闭">×</button>
+        </div>
+        <p class="modal-intro">现实不是只有完成或失败。选择今天真正做到的程度。</p>
+        <div class="complete-options" id="completeOptions"></div>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="capsuleModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="capsuleModalTitle">
+        <div class="modal-header">
+          <div><span class="eyebrow">MEMORY CAPSULE</span><h2 id="capsuleModalTitle">保存这一刻</h2></div>
+          <button class="icon-button" data-close-modal aria-label="关闭">×</button>
+        </div>
+        <label>这一刻的名字<input id="capsuleTitleInput" maxlength="40" placeholder="例如：第一次完成自己的软件" /></label>
+        <div class="form-grid">
+          <label>日期<input id="capsuleDateInput" type="date" /></label>
+          <label>属于哪类<select id="capsuleTypeInput"><option>重要完成</option><option>第一次</option><option>重新开始</option><option>意外经历</option><option>个人纪念</option></select></label>
+        </div>
+        <label>当时想说的话<textarea id="capsuleNoteInput" maxlength="180" placeholder="不需要写得完整，留下一句真实的话就够了。"></textarea></label>
+        <button class="primary-button wide" id="saveCapsuleButton">封存这段记忆</button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"><span>✦</span><div><strong id="toastTitle">经验已记录</strong><small id="toastCopy">你的生活又向前了一点。</small></div></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
